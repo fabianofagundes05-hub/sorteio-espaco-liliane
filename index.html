@@ -9,64 +9,106 @@
 </head>
 <body>
   <main class="page">
-    <section class="card">
-      <div class="logo">Espaço By Liliane Schiaffino</div>
+    <header class="brand-header">
+      <img src="assets/logo-espaco-liliane.png" alt="Espaço By Liliane Schiaffino" />
+    </header>
 
-      <p class="tag">Sorteio Especial</p>
+    <section class="content">
+      <div class="heart">♡</div>
 
-      <h1>Concorra a um tricô exclusivo</h1>
+      <h1>Participe do nosso <span>sorteio!</span></h1>
 
-      <p class="description">
-        Preencha seus dados para participar. O(a) ganhador(a) será avisado(a)
-        pelo WhatsApp informado no cadastro.
+      <p class="subtitle">
+        Siga nosso Instagram, preencha seus dados e concorra a um tricô exclusivo.
       </p>
 
-      <div class="rules">
-        <p><strong>Para validar sua participação:</strong></p>
-        <p>• Siga nosso Instagram <strong>@espacobylilianee</strong></p>
-        <p>• Informe seus dados corretamente</p>
-        <p>• Use um WhatsApp válido para contato</p>
-      </div>
-
       <a
-        class="instagram-link"
+        class="instagram-button"
         href="https://www.instagram.com/espacobylilianee/"
         target="_blank"
         rel="noopener"
       >
-        Abrir Instagram da loja
+        <span class="icon">◎</span>
+        <span>
+          <strong>Seguir nosso Instagram</strong>
+          <small>Clique para abrir o Instagram</small>
+        </span>
       </a>
 
-      <form id="form-sorteio">
+      <div class="divider">
+        <span>↩</span>
+      </div>
+
+      <p class="instruction">
+        Depois de seguir, volte aqui e preencha o formulário abaixo:
+      </p>
+
+      <form id="form-sorteio" class="form">
         <label>
-          Nome completo
+          Nome completo *
           <input type="text" name="nome" placeholder="Digite seu nome completo" required />
         </label>
 
         <label>
-          WhatsApp com DDD
-          <input type="tel" name="whatsapp" placeholder="Ex: 55999999999" required />
+          WhatsApp *
+          <input type="tel" name="whatsapp" placeholder="(55) 99999-9999" required />
         </label>
 
         <label>
-          Seu @ no Instagram
+          Instagram *
           <input type="text" name="instagram" placeholder="@seuinstagram" required />
         </label>
 
-        <label class="checkbox">
+        <label class="confirm-box">
           <input type="checkbox" name="confirmouSeguir" required />
-          <span>Confirmo que sigo o Instagram da loja.</span>
+          <span>
+            Ao participar, você confirma que seguiu nosso Instagram
+            e concorda com as regras do sorteio.
+          </span>
         </label>
 
-        <label class="checkbox">
-          <input type="checkbox" name="aceiteDados" required />
-          <span>Autorizo o contato via WhatsApp caso eu seja o(a) ganhador(a).</span>
-        </label>
-
-        <button id="submit-button" type="submit">Participar do sorteio</button>
+        <button id="submit-button" type="submit">
+          <span class="gift">□</span>
+          <span>
+            <strong>Quero participar</strong>
+            <small>Finalizar minha inscrição</small>
+          </span>
+        </button>
 
         <p id="mensagem" class="message"></p>
       </form>
+
+      <section class="rules">
+        <div class="section-title">
+          <span>□</span>
+          <h2>Regras do sorteio</h2>
+        </div>
+
+        <div class="rules-grid">
+          <article>
+            <div class="rule-icon">♡</div>
+            <h3>Siga nosso Instagram</h3>
+            <p>É obrigatório seguir para participar.</p>
+          </article>
+
+          <article>
+            <div class="rule-icon">☷</div>
+            <h3>Preencha seus dados</h3>
+            <p>Informe corretamente seus dados de contato.</p>
+          </article>
+
+          <article>
+            <div class="rule-icon">♕</div>
+            <h3>Aguarde o resultado</h3>
+            <p>Entraremos em contato com a ganhadora.</p>
+          </article>
+        </div>
+      </section>
+
+      <footer>
+        <p>♡ Boa sorte!</p>
+        <small>Vamos amar ter você com a gente.</small>
+      </footer>
     </section>
   </main>
 
@@ -75,18 +117,31 @@
     const mensagem = document.getElementById("mensagem");
     const button = document.getElementById("submit-button");
 
+    function limparWhatsApp(valor) {
+      return String(valor || "").replace(/\D/g, "");
+    }
+
+    function normalizarInstagram(valor) {
+      return String(valor || "").trim().replace(/^@/, "");
+    }
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const data = new FormData(form);
 
       const payload = {
-        nome: data.get("nome"),
-        whatsapp: String(data.get("whatsapp") || "").replace(/\D/g, ""),
-        instagram: data.get("instagram"),
-        confirmouSeguir: data.get("confirmouSeguir") === "on",
-        aceiteDados: data.get("aceiteDados") === "on"
+        nome: String(data.get("nome") || "").trim(),
+        whatsapp: limparWhatsApp(data.get("whatsapp")),
+        instagram: normalizarInstagram(data.get("instagram")),
+        confirmouSeguir: data.get("confirmouSeguir") === "on"
       };
+
+      if (!payload.nome || !payload.whatsapp || !payload.instagram || !payload.confirmouSeguir) {
+        mensagem.textContent = "Preencha todos os campos obrigatórios.";
+        mensagem.className = "message error";
+        return;
+      }
 
       if (payload.whatsapp.length < 10 || payload.whatsapp.length > 13) {
         mensagem.textContent = "Informe um WhatsApp válido com DDD.";
@@ -95,8 +150,8 @@
       }
 
       button.disabled = true;
-      button.textContent = "Enviando...";
-      mensagem.textContent = "";
+      mensagem.textContent = "Enviando sua inscrição...";
+      mensagem.className = "message";
 
       try {
         const response = await fetch("/api/participar", {
@@ -113,12 +168,11 @@
         if (result.success) {
           form.reset();
         }
-      } catch {
-        mensagem.textContent = "Não foi possível enviar. Tente novamente.";
+      } catch (error) {
+        mensagem.textContent = "Não foi possível enviar agora. Verifique a conexão e tente novamente.";
         mensagem.className = "message error";
       } finally {
         button.disabled = false;
-        button.textContent = "Participar do sorteio";
       }
     });
   </script>
