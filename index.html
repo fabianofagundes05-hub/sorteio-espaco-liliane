@@ -9,68 +9,66 @@
 </head>
 <body>
   <main class="page">
-    <section class="top-brand">
-      <div class="ornament"></div>
-      <h2>Espaço By Liliane Schiaffino</h2>
-      <div class="ornament bottom"></div>
-    </section>
+    <header class="brand">
+      <div class="gold-line"></div>
+      <h1>Espaço By Liliane Schiaffino</h1>
+      <div class="gold-line"></div>
+    </header>
 
-    <section class="content">
+    <section class="hero">
       <div class="heart">♡</div>
 
-      <h1>Participe do nosso <span>sorteio!</span></h1>
+      <h2>Participe do nosso <span>sorteio!</span></h2>
 
       <p class="subtitle">
-        Siga nosso Instagram, preencha seus dados e concorra a um tricô exclusivo.
+        Siga nosso Instagram e preencha seus dados para concorrer a um tricô exclusivo.
       </p>
 
-      <a
-        class="instagram-button"
-        href="https://www.instagram.com/espacobylilianee/"
-        target="_blank"
-        rel="noopener"
-      >
-        <span class="insta-icon">◎</span>
+      <a class="instagram" href="https://www.instagram.com/espacobylilianee/" target="_blank" rel="noopener">
+        <span class="instagram-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 4.3A3.7 3.7 0 1 1 12 15.7 3.7 3.7 0 0 1 12 8.3Zm0 2A1.7 1.7 0 1 0 12 13.7 1.7 1.7 0 0 0 12 10.3ZM17.7 6.6a.9.9 0 1 1-.9.9.9.9 0 0 1 .9-.9Z"/>
+          </svg>
+        </span>
         <span>
           <strong>Seguir @espacobylilianee</strong>
           <small>Clique para abrir o Instagram da loja</small>
         </span>
       </a>
 
-      <div class="divider"><span>↩</span></div>
+      <div class="divider"><span>♡</span></div>
 
-      <p class="instruction">
-        Depois de seguir, volte aqui e preencha o formulário abaixo:
-      </p>
+      <p class="instruction">Depois de seguir, volte aqui e finalize sua inscrição:</p>
 
       <form id="form-sorteio" class="form">
         <label>
-          Nome completo *
+          Nome completo
           <input type="text" name="nome" placeholder="Digite seu nome completo" required />
         </label>
 
         <label>
-          WhatsApp *
-          <input type="tel" name="whatsapp" placeholder="(55) 99999-9999" required />
+          WhatsApp
+          <input id="whatsapp" type="tel" name="whatsapp" placeholder="(55) 99999-9999" required />
         </label>
 
         <label>
-          Instagram *
+          Instagram
           <input type="text" name="instagram" placeholder="@seuinstagram" required />
         </label>
 
-        <label class="confirm-box">
+        <label class="check">
           <input type="checkbox" name="confirmouSeguir" required />
-          <span>
-            Ao participar, você confirma que seguiu o Instagram da loja
-            e concorda com as regras do sorteio.
-          </span>
+          <span>Confirmo que sigo a loja no Instagram e aceito participar do sorteio.</span>
         </label>
 
         <button id="submit-button" type="submit">
-          <span class="gift">♡</span>
+          <span class="gift-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 7h-2.2A3 3 0 0 0 12 5.8 3 3 0 0 0 6.2 7H4a2 2 0 0 0-2 2v3h2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8h2V9a2 2 0 0 0-2-2Zm-6-1a1 1 0 1 1 1 1h-2a1 1 0 0 1 1-1ZM9 6a1 1 0 0 1 1 1H8a1 1 0 0 1 1-1Zm1 14H6v-8h4v8Zm0-10H4V9h6v1Zm8 10h-6v-8h6v8Zm2-10h-8V9h8v1Z"/>
+            </svg>
+          </span>
           <span>
-            <strong>Quero participar</strong>
+            <strong>Quero participar!</strong>
             <small>Finalizar minha inscrição</small>
           </span>
         </button>
@@ -78,39 +76,52 @@
         <p id="mensagem" class="message"></p>
       </form>
 
-      <section class="rules">
-        <div class="section-title">
-          <span>♡</span>
-          <h2>Regras do sorteio</h2>
-        </div>
-
-        <div class="rules-grid">
-          <article>
-            <div class="rule-icon">♡</div>
-            <h3>Siga nosso Instagram</h3>
-            <p>É obrigatório seguir a loja para participar.</p>
-          </article>
-
-          <article>
-            <div class="rule-icon">☷</div>
-            <h3>Preencha seus dados</h3>
-            <p>Informe corretamente seu nome, WhatsApp e Instagram.</p>
-          </article>
-
-          <article>
-            <div class="rule-icon">♕</div>
-            <h3>Aguarde o resultado</h3>
-            <p>Entraremos em contato com a ganhadora pelo WhatsApp.</p>
-          </article>
-        </div>
-      </section>
-
-      <footer>
-        <p>♡ Boa sorte!</p>
-        <small>Vamos amar ter você com a gente.</small>
-      </footer>
+      <p class="secure">🔒 Seus dados serão usados apenas para contato sobre este sorteio.</p>
     </section>
+
+    <section class="rules">
+      <h2>Regras do sorteio</h2>
+
+      <div class="rules-grid">
+        <article>
+          <span class="rule-icon">♡</span>
+          <div>
+            <h3>Siga nosso Instagram</h3>
+            <p>É obrigatório seguir @espacobylilianee para participar.</p>
+          </div>
+        </article>
+
+        <article>
+          <span class="rule-icon">☏</span>
+          <div>
+            <h3>Informe um WhatsApp válido</h3>
+            <p>O contato com a ganhadora será feito pelo número informado.</p>
+          </div>
+        </article>
+
+        <article>
+          <span class="rule-icon">🎁</span>
+          <div>
+            <h3>Boa sorte!</h3>
+            <p>O sorteio será realizado em outra data e divulgado pela loja.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <p>Boa sorte! ♡</p>
+    </footer>
   </main>
+
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <button id="modal-close" type="button" class="modal-close">×</button>
+      <div class="modal-heart">♡</div>
+      <h2>Inscrição realizada!</h2>
+      <p>Boa sorte! Entraremos em contato pelo WhatsApp caso você seja a ganhadora.</p>
+    </div>
+  </div>
 
   <script>
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTf-aBKYF0utu8WYrrFaO4RoNozCBAnsGOCuyrItsEA_TgkLvUqfkNsPb0HL-jNoQ/exec";
@@ -118,6 +129,9 @@
     const form = document.getElementById("form-sorteio");
     const mensagem = document.getElementById("mensagem");
     const button = document.getElementById("submit-button");
+    const whatsappInput = document.getElementById("whatsapp");
+    const modal = document.getElementById("modal");
+    const modalClose = document.getElementById("modal-close");
 
     function limparWhatsApp(valor) {
       return String(valor || "").replace(/\D/g, "");
@@ -126,6 +140,22 @@
     function normalizarInstagram(valor) {
       return String(valor || "").trim().replace(/^@/, "");
     }
+
+    function mascaraWhatsApp(valor) {
+      const numeros = limparWhatsApp(valor).slice(0, 11);
+      if (numeros.length <= 2) return numeros;
+      if (numeros.length <= 7) return `(${numeros.slice(0, 2)}) ${numeros.slice(2)}`;
+      return `(${numeros.slice(0, 2)}) ${numeros.slice(2, 7)}-${numeros.slice(7)}`;
+    }
+
+    whatsappInput.addEventListener("input", () => {
+      whatsappInput.value = mascaraWhatsApp(whatsappInput.value);
+    });
+
+    modalClose.addEventListener("click", () => {
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+    });
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -146,7 +176,7 @@
         return;
       }
 
-      if (payload.whatsapp.length < 10 || payload.whatsapp.length > 13) {
+      if (payload.whatsapp.length < 10 || payload.whatsapp.length > 11) {
         mensagem.textContent = "Informe um WhatsApp válido com DDD.";
         mensagem.className = "message error";
         return;
@@ -167,6 +197,9 @@
         mensagem.textContent = "Inscrição realizada com sucesso. Boa sorte!";
         mensagem.className = "message success";
         form.reset();
+
+        modal.classList.add("show");
+        modal.setAttribute("aria-hidden", "false");
       } catch (error) {
         mensagem.textContent = "Não foi possível enviar agora. Tente novamente.";
         mensagem.className = "message error";

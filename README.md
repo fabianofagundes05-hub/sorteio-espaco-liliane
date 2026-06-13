@@ -1,10 +1,18 @@
 # Sorteio | Espaço By Liliane Schiaffino
 
-Versão final sem imagem, com visual elegante e envio para Google Sheets.
+Versão premium sem imagem, com layout elegante e envio para Google Sheets.
+
+## Como subir no GitHub
+
+1. Extraia este ZIP.
+2. No repositório do GitHub, clique em Add file > Upload files.
+3. Envie todos os arquivos extraídos.
+4. Clique em Commit changes.
+5. Aguarde o deploy automático da Cloudflare Pages.
 
 ## Cloudflare Pages
 
-Use esta configuração:
+Configuração recomendada:
 
 - Framework preset: None
 - Build command: deixe vazio
@@ -13,10 +21,10 @@ Use esta configuração:
 
 ## Google Sheets
 
-A URL do Apps Script já está configurada no `index.html`:
+A URL do Apps Script já está configurada no index.html:
 
 https://script.google.com/macros/s/AKfycbyTf-aBKYF0utu8WYrrFaO4RoNozCBAnsGOCuyrItsEA_TgkLvUqfkNsPb0HL-jNoQ/exec
 
-## Arquivo de Apps Script
+## Arquivo Apps Script
 
-O arquivo `google-apps-script.gs` está incluído apenas como backup.
+O arquivo google-apps-script.gs está incluído como backup.
