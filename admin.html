@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel do Sorteio | Espaço By Liliane Schiaffino</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page admin-page">
+    <section class="admin-card">
+      <p class="eyebrow">Painel administrativo</p>
+      <h1>Sorteio Espaço By Liliane Schiaffino</h1>
+      <p class="lead">Visualize os participantes, exporte a lista e sorteie um vencedor.</p>
+
+      <div class="admin-actions">
+        <button onclick="carregar()">Atualizar lista</button>
+        <button class="secondary" onclick="sortear()">Sortear vencedor</button>
+        <a href="/api/exportar" target="_blank">Exportar CSV</a>
+        <a class="secondary" href="/">Ver página pública</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span>Participantes</span>
+          <strong id="total">0</strong>
+        </div>
+      </div>
+
+      <div id="winner" class="winner"></div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>WhatsApp</th>
+              <th>Instagram</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr><td colspan="4">Carregando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="note">
+        Dica: antes de entregar o prêmio, confira se o Instagram sorteado segue a página da loja.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    let participantes = [];
+
+    async function carregar() {
+      const tbody = document.getElementById("tbody");
+      tbody.innerHTML = "<tr><td colspan='4'>Carregando...</td></tr>";
+
+      const response = await fetch("/api/participantes");
+      const result = await response.json();
+      participantes = result.participantes || [];
+
+      document.getElementById("total").textContent = participantes.length;
+
+      if (!participantes.length) {
+        tbody.innerHTML = "<tr><td colspan='4'>Nenhum participante cadastrado ainda.</td></tr>";
+        return;
+      }
+
+      tbody.innerHTML = participantes.map(p => `
+        <tr>
+          <td>${escapeHtml(p.nome)}</td>
+          <td>${escapeHtml(p.whatsapp)}</td>
+          <td>@${escapeHtml(p.instagram)}</td>
+          <td>${escapeHtml(p.criado_em)}</td>
+        </tr>
+      `).join("");
+    }
+
+    async function sortear() {
+      const response = await fetch("/api/sortear", { method: "POST" });
+      const result = await response.json();
+      const winner = document.getElementById("winner");
+
+      if (!result.success) {
+        winner.className = "winner show";
+        winner.innerHTML = `<strong>${escapeHtml(result.message)}</strong>`;
+        return;
+      }
+
+      const p = result.vencedor;
+      winner.className = "winner show";
+      winner.innerHTML = `
+        <strong>Vencedor(a) sorteado(a):</strong><br>
+        ${escapeHtml(p.nome)}<br>
+        WhatsApp: ${escapeHtml(p.whatsapp)}<br>
+        Instagram: @${escapeHtml(p.instagram)}
+      `;
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    carregar();
+  </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+name = "sorteio-espaco-liliane"
+pages_build_output_dir = "."
+
+[[d1_databases]]
+binding = "DB"
+database_name = "sorteio-espaco-liliane"
+database_id = "COLE_AQUI_O_DATABASE_ID"
