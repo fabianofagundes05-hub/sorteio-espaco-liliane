@@ -1,44 +1,33 @@
 # Sorteio | Espaço By Liliane Schiaffino
 
-Página simples para coletar inscrições do sorteio.
+Versão simples com visual bonito, logo da loja e envio para Google Sheets.
 
-## Cloudflare Pages
+## Publicação na Cloudflare Pages
 
-Configuração do deploy:
+Use:
 
 - Framework preset: None
-- Build command: deixe vazio
+- Build command: vazio
 - Build output directory: /
-- Root directory: deixe vazio
+- Root directory: vazio
 
-## Importante
+## Como fazer as respostas irem para Google Sheets
 
-Para o formulário salvar respostas, é necessário configurar o Cloudflare D1.
+1. Crie uma planilha no Google Sheets.
+2. Vá em Extensões > Apps Script.
+3. Apague o conteúdo padrão.
+4. Cole o código do arquivo `google-apps-script.gs`.
+5. Salve.
+6. Execute a função `criarCabecalho` uma vez.
+7. Clique em Implantar > Nova implantação.
+8. Tipo: App da Web.
+9. Executar como: Você.
+10. Quem pode acessar: Qualquer pessoa.
+11. Copie a URL gerada.
+12. No arquivo `index.html`, troque:
 
-1. Crie um banco D1 chamado:
+COLE_AQUI_A_URL_DO_APPS_SCRIPT
 
-sorteio-espaco-liliane
+pela URL da implantação.
 
-2. Crie um binding no Pages:
-
-Variable name: DB
-D1 database: sorteio-espaco-liliane
-
-3. Execute a migration ou crie a tabela com o SQL abaixo:
-
-CREATE TABLE IF NOT EXISTS participantes (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  nome TEXT NOT NULL,
-  whatsapp TEXT NOT NULL UNIQUE,
-  instagram TEXT NOT NULL,
-  confirmou_seguir INTEGER NOT NULL DEFAULT 1,
-  ip TEXT,
-  user_agent TEXT,
-  criado_em TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-## Instagram
-
-O botão já aponta para:
-
-https://www.instagram.com/espacobylilianee/
+Depois envie os arquivos atualizados para o GitHub.

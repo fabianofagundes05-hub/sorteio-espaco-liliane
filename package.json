@@ -1,8 +1,5 @@
 {
-  "name": "sorteio-espaco-liliane",
+  "name": "sorteio-espaco-liliane-sheets",
   "version": "1.0.0",
-  "private": true,
-  "devDependencies": {
-    "wrangler": "latest"
-  }
+  "private": true
 }
