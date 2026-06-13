@@ -1,33 +1,22 @@
 # Sorteio | Espaço By Liliane Schiaffino
 
-Versão simples com visual bonito, logo da loja e envio para Google Sheets.
+Versão final sem imagem, com visual elegante e envio para Google Sheets.
 
-## Publicação na Cloudflare Pages
+## Cloudflare Pages
 
-Use:
+Use esta configuração:
 
 - Framework preset: None
-- Build command: vazio
+- Build command: deixe vazio
 - Build output directory: /
-- Root directory: vazio
+- Root directory: deixe vazio
 
-## Como fazer as respostas irem para Google Sheets
+## Google Sheets
 
-1. Crie uma planilha no Google Sheets.
-2. Vá em Extensões > Apps Script.
-3. Apague o conteúdo padrão.
-4. Cole o código do arquivo `google-apps-script.gs`.
-5. Salve.
-6. Execute a função `criarCabecalho` uma vez.
-7. Clique em Implantar > Nova implantação.
-8. Tipo: App da Web.
-9. Executar como: Você.
-10. Quem pode acessar: Qualquer pessoa.
-11. Copie a URL gerada.
-12. No arquivo `index.html`, troque:
+A URL do Apps Script já está configurada no `index.html`:
 
-COLE_AQUI_A_URL_DO_APPS_SCRIPT
+https://script.google.com/macros/s/AKfycbyTf-aBKYF0utu8WYrrFaO4RoNozCBAnsGOCuyrItsEA_TgkLvUqfkNsPb0HL-jNoQ/exec
 
-pela URL da implantação.
+## Arquivo de Apps Script
 
-Depois envie os arquivos atualizados para o GitHub.
+O arquivo `google-apps-script.gs` está incluído apenas como backup.

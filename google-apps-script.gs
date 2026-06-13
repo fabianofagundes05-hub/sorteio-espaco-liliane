@@ -4,7 +4,6 @@ function doPost(e) {
 
   const whatsapp = String(data.whatsapp || "").replace(/\D/g, "");
 
-  // Bloqueio simples por WhatsApp duplicado
   const lastRow = sheet.getLastRow();
 
   if (lastRow > 1) {

@@ -9,9 +9,11 @@
 </head>
 <body>
   <main class="page">
-    <header class="brand-header">
-      <img src="assets/logo-espaco-liliane.png" alt="Espaço By Liliane Schiaffino" />
-    </header>
+    <section class="top-brand">
+      <div class="ornament"></div>
+      <h2>Espaço By Liliane Schiaffino</h2>
+      <div class="ornament bottom"></div>
+    </section>
 
     <section class="content">
       <div class="heart">♡</div>
@@ -30,8 +32,8 @@
       >
         <span class="insta-icon">◎</span>
         <span>
-          <strong>Seguir nosso Instagram</strong>
-          <small>Clique para abrir o Instagram</small>
+          <strong>Seguir @espacobylilianee</strong>
+          <small>Clique para abrir o Instagram da loja</small>
         </span>
       </a>
 
@@ -60,13 +62,13 @@
         <label class="confirm-box">
           <input type="checkbox" name="confirmouSeguir" required />
           <span>
-            Ao participar, você confirma que seguiu nosso Instagram
+            Ao participar, você confirma que seguiu o Instagram da loja
             e concorda com as regras do sorteio.
           </span>
         </label>
 
         <button id="submit-button" type="submit">
-          <span class="gift">□</span>
+          <span class="gift">♡</span>
           <span>
             <strong>Quero participar</strong>
             <small>Finalizar minha inscrição</small>
@@ -78,7 +80,7 @@
 
       <section class="rules">
         <div class="section-title">
-          <span>□</span>
+          <span>♡</span>
           <h2>Regras do sorteio</h2>
         </div>
 
@@ -86,19 +88,19 @@
           <article>
             <div class="rule-icon">♡</div>
             <h3>Siga nosso Instagram</h3>
-            <p>É obrigatório seguir para participar.</p>
+            <p>É obrigatório seguir a loja para participar.</p>
           </article>
 
           <article>
             <div class="rule-icon">☷</div>
             <h3>Preencha seus dados</h3>
-            <p>Informe corretamente seus dados de contato.</p>
+            <p>Informe corretamente seu nome, WhatsApp e Instagram.</p>
           </article>
 
           <article>
             <div class="rule-icon">♕</div>
             <h3>Aguarde o resultado</h3>
-            <p>Entraremos em contato com a ganhadora.</p>
+            <p>Entraremos em contato com a ganhadora pelo WhatsApp.</p>
           </article>
         </div>
       </section>
@@ -111,7 +113,7 @@
   </main>
 
   <script>
-    const GOOGLE_SCRIPT_URL = "COLE_AQUI_A_URL_DO_APPS_SCRIPT";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTf-aBKYF0utu8WYrrFaO4RoNozCBAnsGOCuyrItsEA_TgkLvUqfkNsPb0HL-jNoQ/exec";
 
     const form = document.getElementById("form-sorteio");
     const mensagem = document.getElementById("mensagem");
@@ -127,12 +129,6 @@
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-
-      if (GOOGLE_SCRIPT_URL === "COLE_AQUI_A_URL_DO_APPS_SCRIPT") {
-        mensagem.textContent = "Falta configurar a URL do Google Sheets no arquivo index.html.";
-        mensagem.className = "message error";
-        return;
-      }
 
       const data = new FormData(form);
 

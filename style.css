@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;700;800&display=swap');
 
 * { box-sizing: border-box; }
 
@@ -25,19 +25,49 @@ body {
   font-family: Inter, Arial, sans-serif;
 }
 
-.brand-header {
-  background: var(--brand-bg);
-  padding: 18px 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.top-brand {
+  background:
+    linear-gradient(rgba(157, 137, 128, .95), rgba(157, 137, 128, .95)),
+    radial-gradient(circle, rgba(255,255,255,.18), transparent 55%);
+  padding: 34px 18px 38px;
+  text-align: center;
+  border-bottom: 1px solid rgba(216, 173, 79, .35);
 }
 
-.brand-header img {
+.top-brand h2 {
+  margin: 18px 0;
+  color: #2f343b;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(52px, 10vw, 104px);
+  font-weight: 400;
+  line-height: .95;
+  text-shadow: 0 1px 0 rgba(255,255,255,.14);
+}
+
+.ornament {
   width: min(100%, 980px);
-  max-height: 220px;
-  object-fit: contain;
-  display: block;
+  height: 10px;
+  margin: 0 auto;
+  position: relative;
+  border-top: 6px solid var(--gold);
+}
+
+.ornament::before {
+  content: "∞";
+  position: absolute;
+  left: 50%;
+  top: -38px;
+  transform: translateX(-50%);
+  color: var(--gold);
+  background: var(--brand-bg);
+  padding: 0 28px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 58px;
+  line-height: 1;
+}
+
+.ornament.bottom {
+  transform: rotate(180deg);
 }
 
 .content {
@@ -88,6 +118,12 @@ h1 span { color: var(--rose); }
   align-items: center;
   justify-content: center;
   gap: 22px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.instagram-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 34px rgba(184, 77, 101, 0.34);
 }
 
 .insta-icon {
@@ -105,13 +141,13 @@ h1 span { color: var(--rose); }
   display: block;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  font-size: 23px;
+  font-size: 22px;
 }
 
 .instagram-button small {
   display: block;
   margin-top: 6px;
-  font-size: 16px;
+  font-size: 15px;
   opacity: 0.92;
 }
 
@@ -221,6 +257,7 @@ button:disabled {
   border-radius: 8px;
   display: grid;
   place-items: center;
+  font-size: 24px;
 }
 
 button strong {
@@ -325,15 +362,63 @@ footer small {
 }
 
 @media (max-width: 700px) {
-  .brand-header { padding: 12px 8px; }
-  .brand-header img { max-height: 135px; }
-  .content { padding: 40px 18px 30px; }
-  .instagram-button, button { min-height: 78px; padding: 15px 18px; }
-  .insta-icon, .gift { width: 42px; height: 42px; }
-  .instagram-button strong, button strong { font-size: 17px; }
-  .instagram-button small, button small { font-size: 14px; }
-  .rules-grid { grid-template-columns: 1fr; }
-  .rules-grid article { grid-template-columns: 54px 1fr; }
-  .rule-icon { width: 50px; height: 50px; font-size: 25px; border-radius: 16px; }
-  .confirm-box { padding: 18px; }
+  .top-brand {
+    padding: 28px 12px 32px;
+  }
+
+  .top-brand h2 {
+    font-size: clamp(42px, 15vw, 70px);
+    margin: 14px 0;
+  }
+
+  .ornament {
+    border-top-width: 4px;
+  }
+
+  .ornament::before {
+    top: -29px;
+    font-size: 44px;
+    padding: 0 18px;
+  }
+
+  .content {
+    padding: 40px 18px 30px;
+  }
+
+  .instagram-button, button {
+    min-height: 78px;
+    padding: 15px 18px;
+  }
+
+  .insta-icon, .gift {
+    width: 42px;
+    height: 42px;
+  }
+
+  .instagram-button strong, button strong {
+    font-size: 16px;
+  }
+
+  .instagram-button small, button small {
+    font-size: 13px;
+  }
+
+  .rules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rules-grid article {
+    grid-template-columns: 54px 1fr;
+  }
+
+  .rule-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    border-radius: 16px;
+  }
+
+  .confirm-box {
+    padding: 18px;
+  }
 }
