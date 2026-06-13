@@ -2,12 +2,6 @@
   "name": "sorteio-espaco-liliane",
   "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "dev": "wrangler pages dev .",
-    "deploy": "wrangler pages deploy .",
-    "d1:create": "wrangler d1 create sorteio-espaco-liliane",
-    "d1:migrate": "wrangler d1 migrations apply sorteio-espaco-liliane"
-  },
   "devDependencies": {
     "wrangler": "latest"
   }

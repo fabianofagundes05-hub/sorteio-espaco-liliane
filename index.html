@@ -4,79 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sorteio | Espaço By Liliane Schiaffino</title>
-  <meta name="description" content="Participe do sorteio da Espaço By Liliane Schiaffino e concorra a um tricô especial." />
+  <meta name="description" content="Participe do sorteio da Espaço By Liliane Schiaffino." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main class="page">
-    <section class="hero">
-      <div class="hero__content">
-        <p class="eyebrow">Sorteio Especial</p>
-        <h1>Espaço By Liliane Schiaffino</h1>
-        <p class="lead">
-          Preencha seus dados e concorra a um tricô especial da loja.
-        </p>
+    <section class="card">
+      <div class="logo">Espaço By Liliane Schiaffino</div>
 
-        <div class="prize-card">
-          <div class="prize-card__image">
-            <span>Tricô<br>Especial</span>
-          </div>
-          <div>
-            <h2>Como participar</h2>
-            <ul>
-              <li>Siga nosso Instagram <strong>@espacobylilianee</strong></li>
-              <li>Preencha seus dados corretamente</li>
-              <li>Informe um WhatsApp válido para contato</li>
-            </ul>
-          </div>
-        </div>
+      <p class="tag">Sorteio Especial</p>
 
-        <a class="instagram-button" href="https://www.instagram.com/espacobylilianee/" target="_blank" rel="noopener">
-          Seguir no Instagram
-        </a>
+      <h1>Concorra a um tricô exclusivo</h1>
 
-        <p class="note">
-          O Instagram será conferido antes da entrega do prêmio.
-        </p>
+      <p class="description">
+        Preencha seus dados para participar. O(a) ganhador(a) será avisado(a)
+        pelo WhatsApp informado no cadastro.
+      </p>
+
+      <div class="rules">
+        <p><strong>Para validar sua participação:</strong></p>
+        <p>• Siga nosso Instagram <strong>@espacobylilianee</strong></p>
+        <p>• Informe seus dados corretamente</p>
+        <p>• Use um WhatsApp válido para contato</p>
       </div>
 
-      <form id="form-sorteio" class="form-card">
-        <h2>Quero participar</h2>
+      <a
+        class="instagram-link"
+        href="https://www.instagram.com/espacobylilianee/"
+        target="_blank"
+        rel="noopener"
+      >
+        Abrir Instagram da loja
+      </a>
 
+      <form id="form-sorteio">
         <label>
           Nome completo
-          <input type="text" name="nome" placeholder="Digite seu nome completo" autocomplete="name" required />
+          <input type="text" name="nome" placeholder="Digite seu nome completo" required />
         </label>
 
         <label>
           WhatsApp com DDD
-          <input type="tel" name="whatsapp" placeholder="Ex: 55999999999" inputmode="numeric" required />
+          <input type="tel" name="whatsapp" placeholder="Ex: 55999999999" required />
         </label>
 
         <label>
-          Seu @ do Instagram
-          <input type="text" name="instagram" placeholder="@seuinstagram" autocomplete="off" required />
+          Seu @ no Instagram
+          <input type="text" name="instagram" placeholder="@seuinstagram" required />
         </label>
 
         <label class="checkbox">
           <input type="checkbox" name="confirmouSeguir" required />
-          <span>Confirmo que sigo o Instagram da Espaço By Liliane Schiaffino.</span>
+          <span>Confirmo que sigo o Instagram da loja.</span>
         </label>
 
         <label class="checkbox">
           <input type="checkbox" name="aceiteDados" required />
-          <span>Autorizo o uso dos dados informados exclusivamente para contato relacionado a este sorteio.</span>
+          <span>Autorizo o contato via WhatsApp caso eu seja o(a) ganhador(a).</span>
         </label>
 
         <button id="submit-button" type="submit">Participar do sorteio</button>
 
-        <p id="mensagem" class="message" role="status"></p>
+        <p id="mensagem" class="message"></p>
       </form>
     </section>
-
-    <footer>
-      <a href="/admin.html">Acesso administrativo</a>
-    </footer>
   </main>
 
   <script>
@@ -84,17 +75,14 @@
     const mensagem = document.getElementById("mensagem");
     const button = document.getElementById("submit-button");
 
-    function limparWhatsApp(valor) {
-      return String(valor || "").replace(/\D/g, "");
-    }
-
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const data = new FormData(form);
+
       const payload = {
         nome: data.get("nome"),
-        whatsapp: limparWhatsApp(data.get("whatsapp")),
+        whatsapp: String(data.get("whatsapp") || "").replace(/\D/g, ""),
         instagram: data.get("instagram"),
         confirmouSeguir: data.get("confirmouSeguir") === "on",
         aceiteDados: data.get("aceiteDados") === "on"
@@ -102,7 +90,7 @@
 
       if (payload.whatsapp.length < 10 || payload.whatsapp.length > 13) {
         mensagem.textContent = "Informe um WhatsApp válido com DDD.";
-        mensagem.className = "message message--error";
+        mensagem.className = "message error";
         return;
       }
 
@@ -120,14 +108,14 @@
         const result = await response.json();
 
         mensagem.textContent = result.message;
-        mensagem.className = result.success ? "message message--success" : "message message--error";
+        mensagem.className = result.success ? "message success" : "message error";
 
         if (result.success) {
           form.reset();
         }
-      } catch (error) {
-        mensagem.textContent = "Não foi possível enviar agora. Tente novamente.";
-        mensagem.className = "message message--error";
+      } catch {
+        mensagem.textContent = "Não foi possível enviar. Tente novamente.";
+        mensagem.className = "message error";
       } finally {
         button.disabled = false;
         button.textContent = "Participar do sorteio";

@@ -1,69 +1,35 @@
-# Sorteio | Espaço By Liliane Schiaffino
+# Sorteio Espaço By Liliane Schiaffino
 
-Projeto pronto para publicar no Cloudflare Pages com:
-- Página pública do sorteio
-- Formulário de participação
-- Banco Cloudflare D1
-- Painel administrativo
-- Sorteio automático
-- Exportação CSV
+Projeto simples para Cloudflare Pages + D1.
 
-## 1. Instalar o Wrangler
+## O que tem
 
-```bash
-npm install -g wrangler
-```
+- Página visual do sorteio
+- Botão para Instagram da loja
+- Formulário com nome, WhatsApp e Instagram
+- Salvamento no Cloudflare D1
+- Bloqueio por WhatsApp duplicado
 
-Depois faça login:
+## Configuração no Cloudflare Pages
 
-```bash
-wrangler login
-```
+Framework preset: None
 
-## 2. Criar o banco D1
+Build command: deixe vazio
 
-Dentro da pasta do projeto, execute:
+Build output directory: /
 
-```bash
-wrangler d1 create sorteio-espaco-liliane
-```
+Root directory: /
 
-Copie o `database_id` que aparecer no terminal e cole no arquivo `wrangler.toml`, no campo:
+## Banco D1
 
-```toml
-database_id = "COLE_AQUI_O_DATABASE_ID"
-```
+Crie um banco D1 chamado:
 
-## 3. Criar as tabelas
+sorteio-espaco-liliane
 
-Execute:
+Depois cole o database_id no wrangler.toml.
 
-```bash
-wrangler d1 migrations apply sorteio-espaco-liliane
-```
+## Migration
 
-## 4. Testar localmente
+Arquivo da tabela:
 
-```bash
-wrangler pages dev .
-```
-
-Abra o endereço que aparecer no terminal.
-
-## 5. Publicar
-
-```bash
-wrangler pages deploy .
-```
-
-## 6. Acessar o painel
-
-Depois de publicado, acesse:
-
-```text
-https://SEU-LINK-DA-CLOUDFLARE.pages.dev/admin.html
-```
-
-## Observação importante
-
-O painel administrativo ainda não tem senha. Para uso real, recomendo proteger o `/admin.html` com Cloudflare Access ou colocar uma senha simples via Worker.
+migrations/0001_create_participantes.sql
